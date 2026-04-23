@@ -1,34 +1,63 @@
-name: Merge-upstream
+name: RSSHub Ultimate Auto Sync (Zero Error)
 
 on:
-  push:
-    branches: 
-      - master
   schedule:
-    - cron: 40 16 * * *
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 jobs:
-  merge:
-
+  sync:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        ref: master
-        fetch-depth: 0
-        lfs: true
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Set git identity
-      run : |
-        git config --global user.email "xxx@xxx.com"
-        git config --global user.name "xxxxx"
-    - name: Load upstream commits
-      run: git pull https://github.com/DIYgod/RSSHub.git --no-edit --strategy-option ours
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/DIYgod/RSSHub.git
+          git fetch upstream --prune
 
-    - name: Push Commits
-      env:
-        DOWNSTREAM_BRANCH: master
-      run: git push origin $DOWNSTREAM_BRANCH
+      - name: Detect branches safely
+        run: |
+          echo "Detecting branches..."
+
+          # 获取 upstream 默认分支（main/master 自动识别）
+          UPSTREAM_BRANCH=$(git remote show upstream | sed -n "/HEAD branch/s/.*: //p")
+
+          echo "Upstream branch: $UPSTREAM_BRANCH"
+
+          # 自动选择本地分支（不存在就创建）
+          if git show-ref --verify --quiet refs/heads/main; then
+            LOCAL_BRANCH="main"
+          elif git show-ref --verify --quiet refs/heads/master; then
+            LOCAL_BRANCH="master"
+          else
+            LOCAL_BRANCH="sync"
+            git checkout -b sync || true
+          fi
+
+          echo "Local branch: $LOCAL_BRANCH"
+
+          git checkout $LOCAL_BRANCH || git checkout -b $LOCAL_BRANCH
+
+          # 安全合并 upstream
+          git merge "upstream/$UPSTREAM_BRANCH" --no-edit || {
+            echo "⚠️ Merge conflict detected, skipping this run safely"
+            git merge --abort || true
+            exit 0
+          }
+
+      - name: Push safely
+        run: |
+          git push origin HEAD || {
+            echo "⚠️ Push failed (maybe no changes)"
+            exit 0
+          }

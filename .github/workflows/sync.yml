@@ -1,0 +1,18 @@
+
+
+在：
+  日程安排:
+    - cron: '0 */6* * *'  # 每小时同步一次
+  workflow_dispatch:     # 手动触发也可以
+
+工作：
+  同步：
+    运行于：ubuntu-latest
+    步骤：
+      - 名称: 同步分叉
+        使用：repo-sync/github-sync@v2
+        与：
+          source_repo: https://github.com/DIYgod/RSSHub "原仓库地址"
+          源分支："主分支"
+          目标分支："主分支"
+          github_token: ${{ secrets.GITHUB_TOKEN }}

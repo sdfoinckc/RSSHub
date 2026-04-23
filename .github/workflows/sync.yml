@@ -1,4 +1,4 @@
-name: RSSHub Ultimate Auto Sync (Zero Error)
+name: RSSHub Zero-Branch Sync
 
 on:
   schedule:
@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout (no branch)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ""
 
       - name: Configure git
         run: |
@@ -25,39 +26,18 @@ jobs:
           git remote add upstream https://github.com/DIYgod/RSSHub.git
           git fetch upstream --prune
 
-      - name: Detect branches safely
+      - name: Sync upstream (detached HEAD mode)
         run: |
-          echo "Detecting branches..."
+          echo "Finding upstream default branch..."
 
-          # 获取 upstream 默认分支（main/master 自动识别）
           UPSTREAM_BRANCH=$(git remote show upstream | sed -n "/HEAD branch/s/.*: //p")
-
           echo "Upstream branch: $UPSTREAM_BRANCH"
 
-          # 自动选择本地分支（不存在就创建）
-          if git show-ref --verify --quiet refs/heads/main; then
-            LOCAL_BRANCH="main"
-          elif git show-ref --verify --quiet refs/heads/master; then
-            LOCAL_BRANCH="master"
-          else
-            LOCAL_BRANCH="sync"
-            git checkout -b sync || true
-          fi
+          echo "Resetting to upstream state..."
+          git checkout --detach "upstream/$UPSTREAM_BRANCH"
 
-          echo "Local branch: $LOCAL_BRANCH"
+          echo "Pushing directly to origin (no local branch)..."
+          git push origin HEAD:refs/heads/sync --force
 
-          git checkout $LOCAL_BRANCH || git checkout -b $LOCAL_BRANCH
-
-          # 安全合并 upstream
-          git merge "upstream/$UPSTREAM_BRANCH" --no-edit || {
-            echo "⚠️ Merge conflict detected, skipping this run safely"
-            git merge --abort || true
-            exit 0
-          }
-
-      - name: Push safely
-        run: |
-          git push origin HEAD || {
-            echo "⚠️ Push failed (maybe no changes)"
-            exit 0
-          }
+      - name: Done
+        run: echo "Sync completed successfully"

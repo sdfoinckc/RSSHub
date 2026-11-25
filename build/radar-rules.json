@@ -20921,9 +20921,17 @@
         "title": "Blog",
         "docs": "https://docs.rsshub.app/routes/eagle",
         "source": [
-          "/blog/knowledge"
+          "/blog/thoughts"
         ],
-        "target": "/eagle/blog/knowledge/cn"
+        "target": "/eagle/blog/thoughts/cn"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/eagle",
+        "source": [
+          "/blog/guides"
+        ],
+        "target": "/eagle/blog/guides/cn"
       },
       {
         "title": "Blog",
@@ -20955,9 +20963,17 @@
         "title": "Blog",
         "docs": "https://docs.rsshub.app/routes/eagle",
         "source": [
-          "/blog/knowledge"
+          "/blog/thoughts"
         ],
-        "target": "/eagle/blog/knowledge/tw"
+        "target": "/eagle/blog/thoughts/tw"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/eagle",
+        "source": [
+          "/blog/guides"
+        ],
+        "target": "/eagle/blog/guides/tw"
       },
       {
         "title": "Blog",
@@ -20997,9 +21013,17 @@
         "title": "Blog",
         "docs": "https://docs.rsshub.app/routes/eagle",
         "source": [
-          "/blog/knowledge"
+          "/blog/thoughts"
         ],
-        "target": "/eagle/blog/knowledge/en"
+        "target": "/eagle/blog/thoughts/en"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/eagle",
+        "source": [
+          "/blog/guides"
+        ],
+        "target": "/eagle/blog/guides/en"
       },
       {
         "title": "Blog",
@@ -22947,71 +22971,6 @@
           "/grant/search"
         ],
         "target": "/funresearch/grants"
-      }
-    ]
-  },
-  "futunn.com": {
-    "_name": "Futubull 富途牛牛",
-    "news": [
-      {
-        "title": "快讯",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/main/live"
-        ],
-        "target": "/futunn/live"
-      },
-      {
-        "title": "快讯",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/hk/main/live"
-        ],
-        "target": "/futunn/live/Cantonese"
-      },
-      {
-        "title": "快讯",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/en/main/live"
-        ],
-        "target": "/futunn/live/English"
-      },
-      {
-        "title": "视频",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/main/video-list",
-          "/:lang/main/video-list"
-        ],
-        "target": "/futunn/video"
-      },
-      {
-        "title": "要闻",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/main",
-          "/:lang/main"
-        ],
-        "target": "/futunn/main"
-      },
-      {
-        "title": "要闻",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/main",
-          "/:lang/main"
-        ],
-        "target": "/futunn/main"
-      },
-      {
-        "title": "专题",
-        "docs": "https://docs.rsshub.app/routes/futunn",
-        "source": [
-          "/news-topics/:id/*",
-          "/:lang/news-topics/:id/*"
-        ],
-        "target": "/futunn/topic/:id"
       }
     ]
   },
@@ -54676,6 +54635,62 @@
       }
     ]
   },
+  "futunn.com": {
+    "_name": "Futubull 富途牛牛",
+    "news": [
+      {
+        "title": "快讯",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/main/live"
+        ],
+        "target": "/futunn/live"
+      },
+      {
+        "title": "快讯",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/hk/main/live"
+        ],
+        "target": "/futunn/live/Cantonese"
+      },
+      {
+        "title": "快讯",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/en/main/live"
+        ],
+        "target": "/futunn/live/English"
+      },
+      {
+        "title": "视频",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/main/video-list",
+          "/:lang/main/video-list"
+        ],
+        "target": "/futunn/video"
+      },
+      {
+        "title": "要闻",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/main",
+          "/:lang/main"
+        ],
+        "target": "/futunn/main"
+      },
+      {
+        "title": "专题",
+        "docs": "https://docs.rsshub.app/routes/futunn",
+        "source": [
+          "/news-topics/:id/*",
+          "/:lang/news-topics/:id/*"
+        ],
+        "target": "/futunn/topic/:id"
+      }
+    ]
+  },
   "gamer.com.tw": {
     "_name": "巴哈姆特電玩資訊站",
     "ani": [
@@ -63575,6 +63590,31 @@
           "/en/users/:id"
         ],
         "target": "/pixiv/user/novels/:id/true"
+      }
+    ]
+  },
+  "sherwood.news": {
+    "_name": "Sherwood News",
+    ".": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/sherwood",
+        "source": [
+          "/",
+          "/:category",
+          "/:category/:slug"
+        ],
+        "target": "/sherwood/news"
+      },
+      {
+        "title": "Snacks",
+        "docs": "https://docs.rsshub.app/routes/sherwood",
+        "source": [
+          "/snacks",
+          "/snacks/newsletters",
+          "/snacks/newsletters/*"
+        ],
+        "target": "/sherwood/snacks"
       }
     ]
   },

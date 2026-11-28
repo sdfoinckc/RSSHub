@@ -6659,6 +6659,27 @@
       }
     ]
   },
+  "nanshanmuseum.com": {
+    "_name": "Nanshan Museum",
+    "www": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/nanshanmuseum",
+        "source": [
+          "/consultIndex"
+        ],
+        "target": "/nanshanmuseum/consultIndex/news"
+      },
+      {
+        "title": "Exhibitions",
+        "docs": "https://docs.rsshub.app/routes/nanshanmuseum",
+        "source": [
+          "/exhibition/topicList"
+        ],
+        "target": "/nanshanmuseum/exhibition/topicList/topic"
+      }
+    ]
+  },
   "nicovideo.jp": {
     "_name": "Niconico",
     "www": [
@@ -32255,6 +32276,20 @@
           "/:region*"
         ],
         "target": "/liveuamap/:region"
+      }
+    ]
+  },
+  "lmsys.org": {
+    "_name": "LMSYS Org",
+    ".": [
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/lmsys",
+        "source": [
+          "/blog",
+          "/blog"
+        ],
+        "target": "/lmsys/blog"
       }
     ]
   },

@@ -2180,6 +2180,7 @@ export type RoutePath =
   | `/lizhi/user/:id`
   | `/lkong/forum/:id?/:digest?`
   | `/lkong/thread/:id`
+  | `/lmsys/blog`
   | `/lmu/jobs`
   | `/lnmuseum/exhibition/temporary/:type?`
   | `/lnmuseum/information`
@@ -2424,6 +2425,8 @@ export type RoutePath =
   | `/nankai/jwc`
   | `/nankai/notice`
   | `/nankai/yzb/:type?`
+  | `/nanshanmuseum/consultIndex/:type`
+  | `/nanshanmuseum/exhibition/topicList/:type`
   | `/nasa/apod`
   | `/nasa/apod-cn`
   | `/nasa/apod-ncku`
